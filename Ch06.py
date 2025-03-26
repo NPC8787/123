@@ -76,11 +76,7 @@ class StockAnalysis():
     quarterly_eps = np.round(stock.quarterly_financials.loc["Basic EPS"].dropna().tolist(), 2)
   
     # EPS季增率
-    quarterly_eps = stock.quarterly_financials.loc["Basic EPS"]
-    shifted_eps = quarterly_eps.shift(periods=-1, fill_method=None)
-    # 將 shifted_eps 中的零替換為一個很小的值，以避免除以零
-    shifted_eps = shifted_eps.replace(0, 1e-10)  
-    quarterly_eps_growth = np.round((quarterly_eps / shifted_eps - 1).dropna().tolist(), 2)
+    quarterly_eps_growth = np.round(stock.quarterly_financials.loc["Basic EPS"].pct_change(-1, fill_method=None).dropna().tolist(), 2)
   
     # 轉換日期
     dates = [date.strftime('%Y-%m-%d') for date in stock.quarterly_financials.columns]

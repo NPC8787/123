@@ -16,7 +16,7 @@ class PdfLoader:
     def __init__(self,openai_api_key):
         os.environ['OPENAI_API_KEY'] = openai_api_key
         
-        self.llm = ChatOpenAI(temperature=0, model="gpt-3.5-turbo")
+        self.llm = ChatOpenAI(temperature=0, model="gpt-4-turbo")
         self.data_prompt=ChatPromptTemplate.from_messages(messages=[("system","你的任務是對年報資訊進行摘要總結。"
                     "以下為提供的年報資訊：{text},"
                     "請給我重點數據, 如銷售增長情形、營收變化、開發項目等,"

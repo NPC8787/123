@@ -392,10 +392,6 @@ class StockDB:
 
     # 先取得股價資料
     base_df = self.stock_price(stock_list, start_date)
-    # 檢查 base_df 是否為 None
-    if base_df is None:
-        print("stock_price 函數返回了 None。檢查資料或函數邏輯。")
-        return  # 或適當處理 None 的情況
     # 交易日期
     date_list = base_df['日期'].str.replace('-', '')
     date_list = date_list.unique().tolist()
